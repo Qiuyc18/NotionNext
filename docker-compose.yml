@@ -1,0 +1,16 @@
+services:
+  notionnext:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NOTION_PAGE_ID: ${NOTION_PAGE_ID:-}
+        NEXT_PUBLIC_THEME: ${NEXT_PUBLIC_THEME:-}
+    restart: unless-stopped
+    ports:
+      - "8888:3000"
+    environment:
+      HTTP_PROXY: "http://127.0.0.1:7890"
+      HTTPS_PROXY: "https://127.0.0.1:7890"
+      LINK: "http://blog.tanakaukai.icu"
+      NODE_ENV: production
